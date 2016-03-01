@@ -18,6 +18,8 @@
     co = checkout
     # Switch to a branch, creating it if necessary
     go = checkout -B
+    # commit shortcut
+    ci = commit
     # Show verbose output about tags, branches or remotes
     tags = tag -l
     branches = branch -a
