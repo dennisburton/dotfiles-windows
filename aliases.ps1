@@ -12,6 +12,8 @@ ${function:drop} = { Set-Location ~\Documents\Dropbox }
 ${function:dt} = { Set-Location ~\Desktop }
 ${function:docs} = { Set-Location ~\Documents }
 ${function:dl} = { Set-Location ~\Downloads }
+${function:dev} = { Set-Location c:\development }
+${function:q8} = { Set-Location c:\development\arana\queenseight }
 
 # Missing Bash aliases
 Set-Alias time Measure-Command
