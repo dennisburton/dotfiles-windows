@@ -86,11 +86,15 @@ function Refresh-Environment {
             Set-Item -Path Env:\$name -Value $value
         }
     }
+
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 }
 
 # Set a permanent Environment variable, and reload it into $env
 function Set-Environment([String] $variable, [String] $value) {
-    [System.Environment]::SetEnvironmentVariable("$variable", "$value","User")
+    Set-ItemProperty "HKCU:\Environment" $variable $value
+    # Manually setting Registry entry. SetEnvironmentVariable is too slow because of blocking HWND_BROADCAST
+    #[System.Environment]::SetEnvironmentVariable("$variable", "$value","User")
     Invoke-Expression "`$env:${variable} = `"$value`""
 }
 
