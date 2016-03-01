@@ -1,4 +1,4 @@
-$machineName    = "CHOZO"
+$machineName    = "SHINY"
 
 # Get the ID and security principal of the current user account
 $myIdentity=[System.Security.Principal.WindowsIdentity]::GetCurrent()
@@ -16,12 +16,12 @@ if (!$myPrincipal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Admin
 
 ## Set DisplayName for my account
 ## Useful for setting up Account information if you are not using a Microsoft Account
-#$userFullName   = "Jay Harris"
-#$user = Get-WmiObject Win32_UserAccount | Where {$_.Caption -eq $myIdentity.Name}
-#$user.FullName = $userFullName
-#$user.Put() | Out-Null
-#Remove-Variable userFullName
-#Remove-Variable user
+$userFullName   = "Dennis Burton"
+$user = Get-WmiObject Win32_UserAccount | Where {$_.Caption -eq $myIdentity.Name}
+$user.FullName = $userFullName
+$user.Put() | Out-Null
+Remove-Variable userFullName
+Remove-Variable user
 
 # Set Computer Name
 (Get-WmiObject Win32_ComputerSystem).Rename($machineName) | Out-Null
@@ -116,7 +116,7 @@ Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explo
 ### --------------------------
 
 # Disable Bing Search
-Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\ConnectedSearch" "ConnectedSearchUseWeb" 0
+#Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\ConnectedSearch" "ConnectedSearchUseWeb" 0
 
 
 ### SSD Specific Tweaks
