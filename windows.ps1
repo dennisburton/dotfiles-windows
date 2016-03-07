@@ -11,21 +11,20 @@ if (!(Verify-Elevated)) {
 ###############################################################################
 ### Security and Identity                                                     #
 ###############################################################################
-
+$machineName = "BLUEGLOVES"
+$userFullName ="Dennis Burton"
 # Set Computer Name
-$machineName    = "SHINY"
 (Get-WmiObject Win32_ComputerSystem).Rename($machineName) | Out-Null
 
 ## Set DisplayName for my account. Use only if you are not using a Microsoft Account
-$userFullName   = "Dennis Burton"
 $myIdentity=[System.Security.Principal.WindowsIdentity]::GetCurrent()
 $user = Get-WmiObject Win32_UserAccount | Where {$_.Caption -eq $myIdentity.Name}
 $user.FullName = $userFullName
 $user.Put() | Out-Null
-Remove-Variable machineName
-Remove-Variable userFullName
 Remove-Variable user
 Remove-Variable myIdentity
+Remove-Variable userFullName
+Remove-Variable machineName
 
 ###############################################################################
 ### Devices, Power, and Startup                                               #
@@ -154,24 +153,6 @@ Get-AppxPackage "Microsoft.MicrosoftSolitaireCollection" | Remove-AppxPackage
 # Uninstall Sway
 Get-AppxPackage "Microsoft.Office.Sway" | Remove-AppxPackage
 
-<<<<<<< HEAD
-### Charm Bar
-### --------------------------
-
-# Disable Bing Search
-#Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\ConnectedSearch" "ConnectedSearchUseWeb" 0
-
-
-### SSD Specific Tweaks
-### --------------------------
-
-# Disable SuperFetch
-Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" "EnableSuperfetch" 0
-
-
-### Lock Screen
-### --------------------------
-=======
 # Uninstall Twitter
 Get-AppxPackage "*.Twitter" | Remove-AppxPackage
 
@@ -193,7 +174,6 @@ Get-AppxPackage "Microsoft.ZuneVideo" | Remove-AppxPackage
 ###############################################################################
 ### Lock Screen                                                               #
 ###############################################################################
->>>>>>> upstream/master
 
 ## Enable Custom Background on the Login / Lock Screen
 ## Background file: C:\someDirectory\someImage.jpg
